@@ -1,7 +1,7 @@
 import {Options, CompoundBuilder, BoolOptions, TermsRangeOptions, TermsQueryOptions} from './entities';
 
 export class QueryBuilder implements CompoundBuilder {
-	private readonly query: any[] = [];
+	private query: any[] = [];
 
 	/**
 	 * Retrieve all documents.
@@ -264,12 +264,20 @@ export class QueryBuilder implements CompoundBuilder {
 	}
 
 	build() {
+		const query = this.query.pop() || {};
+
+		this.query = [];
+
 		return {
-			query: this.query.pop() || {}
+			query
 		};
 	}
 
 	buildQueryArray() {
-		return this.query;
+		const queryArray = this.query;
+
+		this.query = [];
+
+		return queryArray;
 	}
 }

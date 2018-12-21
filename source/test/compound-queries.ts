@@ -11,6 +11,24 @@ test('should create a `bool` query', t => {
 		.bool({must: leafQueries})
 		.build();
 
+	const anotherLeafQuery = new QueryBuilder()
+		.term('name', 'Foo')
+		.term('firstName', 'Bar')
+		.buildQueryArray();
+
+	t.deepEqual(anotherLeafQuery, [
+		{
+			term: {
+				name: 'Foo'
+			}
+		},
+		{
+			term: {
+				firstName: 'Bar'
+			}
+		}
+	]);
+
 	t.deepEqual(boolQuery, {
 		query: {
 			bool: {
