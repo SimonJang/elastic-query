@@ -112,7 +112,7 @@ export class QueryBuilder implements CompoundBuilder {
 	 * Term level queries
 	 */
 
-	term(field: string, value: string) {
+	term(field: string, value: any) {
 		this.query.push({
 			term: {
 				[field]: value
@@ -122,7 +122,7 @@ export class QueryBuilder implements CompoundBuilder {
 		return this;
 	}
 
-	terms(field: string, values: string[] | TermsQueryOptions) {
+	terms(field: string, values: any[] | TermsQueryOptions) {
 		this.query.push({
 			terms: {
 				[field]: values
