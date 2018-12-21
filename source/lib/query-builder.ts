@@ -255,7 +255,9 @@ export class QueryBuilder implements CompoundBuilder {
 
 	bool(opts: BoolOptions) {
 		this.query.push({
-			...opts
+			bool: {
+				...opts
+			}
 		});
 
 		return this;
